@@ -8,18 +8,18 @@ module.exports = {
     .addStringOption((option) =>
       option
         .setName("protocol")
-        .setDescription("name of project")
+        .setDescription("Name of project")
         .setRequired(true)
     )
     .addStringOption((option) =>
       option
-        .setName("protocol-github")
+        .setName("github-username")
         .setDescription("The project github username")
         .setRequired(true)
     )
     .addStringOption((option) =>
       option
-        .setName("protocol-repos")
+        .setName("github-repos")
         .setDescription("name of repository")
         .setRequired(true)
     )
@@ -32,8 +32,8 @@ module.exports = {
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
   async execute(interaction) {
     const protocol = interaction.options.getString("protocol");
-    const githubUsername = interaction.options.getString("protocol-github");
-    const githubRepos = interaction.options.getString("protocol-repos");
+    const githubUsername = interaction.options.getString("github-username");
+    const githubRepos = interaction.options.getString("github-repos");
     const channelId = interaction.options.getChannel("channel").id;
 
     fs.readFile("config.json", "utf8", function readFileCallback(err, data) {

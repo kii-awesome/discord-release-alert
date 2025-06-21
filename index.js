@@ -34,7 +34,7 @@ client.once(Events.ClientReady, readyClient => {
 	
 	setInterval(() => {
 		fetchNewReleases(client); 
-	}, 60 * 60 * 1000 ); // every1hours
+	}, 60 * 60 * 1000 ); // everyhours
 });
 
 client.on(Events.InteractionCreate, async interaction => {

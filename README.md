@@ -27,5 +27,9 @@ node deploy-commands.js
 ### Run
 
 ```bash
+git clone https://github.com/kii-awesome/discord-release-alert
+cd discord-release-alert
+cp .env.sample .env
+cp config.example.json config.json
 node .
 ```
