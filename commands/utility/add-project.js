@@ -37,13 +37,14 @@ module.exports = {
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
   async execute(interaction) {
+    await interaction.deferReply();
+
     const protocol = interaction.options.getString("protocol");
     const githubUsername = interaction.options.getString("github-username");
     const githubRepos = interaction.options.getString("github-repos");
     const channelId = interaction.options.getChannel("channel").id;
 
-    await interaction.deferReply();
-    await wait(4_000);
+    await wait(2000);
 
     try {
       const data = await fs.readFile("config.json", "utf8");
@@ -64,6 +65,8 @@ module.exports = {
           channelId
         )} with repository https://github.com/${githubUsername}/${githubRepos}`
       );
+
+      console.log(`✅ Success add repository for ${protocol}`)
     } catch (err) {
       console.error("Error add project:", err);
 
