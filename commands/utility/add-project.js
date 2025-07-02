@@ -1,4 +1,6 @@
 const fs = require("node:fs/promises");
+const wait = require("node:timers/promises").setTimeout;
+
 const {
   SlashCommandBuilder,
   channelMention,
@@ -41,6 +43,7 @@ module.exports = {
     const channelId = interaction.options.getChannel("channel").id;
 
     await interaction.deferReply();
+    await wait(4_000);
 
     try {
       const data = await fs.readFile("config.json", "utf8");
@@ -63,6 +66,8 @@ module.exports = {
       );
     } catch (err) {
       console.error("Error add project:", err);
+
+      await interaction.editReply(`Error when adding a repository`);
     }
   },
 };
